@@ -33,4 +33,4 @@ function max(/*...*/) {
     return max ;
 }
 
-var largest = max( 1 , 10 , 100 ,2 ,3, 1000, 4, 5 ,100000, 6 ) ;
+var largest = max( 1 , 10 , 100 ,2 ,3, 1000, 4, 5 ,100000, 6 ) ; 怕啥

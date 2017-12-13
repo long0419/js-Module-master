@@ -32,5 +32,6 @@ JS类数组对象：
         从Array.prototype中继承一些有用的方法。
         其类属性为“Array”
 
+#####
 
 

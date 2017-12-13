@@ -22,6 +22,6 @@ b = a.map(function (x) {
 //filter方法
 var a = [5 , 4 ,3 ,2 ,1];
 b = a.filter(function (x, i) {
-    return i%2 == 0
+    return i%2 == 1
 })
 
