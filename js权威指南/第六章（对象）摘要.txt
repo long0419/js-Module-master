@@ -1,0 +1,55 @@
+1.对象是js的基本数据类型;
+    js对象可以从一个称谓原型的对象继承属性。对象的方法通常是继承的属性。这种“原型式的继承”是js的核心特征。
+
+2.除了字符串、数字、true、false、null和undefined之外，js中的值都是对象。对象最常见的用法是create、set、query、delete、test、enumerate
+    属性包括名字和值， 名字可以包含空字符串在内的任意字符串，但是对象中不能存在两个同名的属性。值可以是任意的js值，或者可以是getter 或setter 函数。
+    除了名字和值之外，每个属性还有一些阈值相关的值，称谓属性特性：
+        可写：标明是否可以设置该属性的值。
+        可枚举：标明是否可以通过for/in循环返回该属性。
+        可配置：标明是否可以删除或者修改该属性。（ES5）
+
+3.除了包含属性之外，每个对象还拥有三个相关的对象特性：
+    对象的原型（prototype）指向另外一个对象，本对象的属性继承自它的原型对象。
+    对象的类（class）是一个表示对象类型的字符串。
+    对象的扩展标记指明了（ES5）是否可以向该对象添加新属性。
+
+4.没有原型的对象为数不多，Object.prototype就是其中之一。它不继承任何属性。其他的原型对象都是普通对象，普通对象都具有原型。
+
+5.检测属性：
+    js对象可以看做是属性的集合，所以经常会检测集合中成员的所属关系，判断某个属性是否存在于每个对象中。可以通过in运算符、hasOwnPrePerty()和propertyIsEnumerable()方法来完成这个工作。（page 128）
+
+6.属性的getter和setter
+    对象属性是由名字、值和一组特性构成的。ES5中属性值可以用一个或两个方法替代，这两个方法就是getter和setter。getter和setter定义的属性乘坐存取器属性（accessor property），它不同于数据属性（data property），数据属性只有一个简单的值。
+由这两个方法负责“设置”属性值。
+
+7.存取器属性定义为一个或两个和属性同名的函数，这个函数定义没有使用function关键字，而是使用get 和（或） set 。注意，这里没有使用冒号将属性名和函数体隔开，但在函数体的结束和下一个方法或数据属性之间有逗号分隔。如：
+    var p = {
+        x : 1.0 ,
+        y : 1.0 ,
+
+        get r(){
+            return Math.sqrt(this.x*this.x + this.y*this.y);
+        } ,
+        set r(newValue){
+            var oldValue = Math.sqrt(this.x*this.x + this.y*this.y);
+            var ratio = newValue/oldValue ;
+            this.x *= ratio ;
+            this.y *= ratio ;
+        },
+
+        get theta(){
+            return Math.atan2(this.y , this.x);
+        }
+    }
+    注意在这段代码中getter和setter里this关键字的用法。js把这些【函数当做对象】的方法来调用，也就是说，在函数体内this指向表示这个点的对象。因此，r属性的getter方法可以通过this.x 和 this.y 引用x和y属性。
+
+
+8.原型属性：
+    原型属性是在实例对象创建之初就设置好的。通过对象直接量创建的对象使用Object.prototype作为他们的原型。检测一个对象是否使另一个对象的原型，请使用isPrototypeOf()方法。
+
+9.可扩展性：
+    对象的可扩展性用以表示是否可以给对象添加新属性。所有内置对象和自定义对象都是显式可扩展的，寄主对象的可扩展性是有js引擎定义的。
+
+10.序列化对象
+    ES5内置函数JSON.stringify（）和JSON.parse（）用来序列化和还原JS 对象。
+
