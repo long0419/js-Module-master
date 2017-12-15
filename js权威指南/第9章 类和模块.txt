@@ -1,2 +1,80 @@
 1.类和原型
     使用instanceOf运算符来检测对象是否属于某个类时会用到构造函数。
+
+2.教程可以参考网页;
+    http://javascript.ruanyifeng.com/oop/pattern.html
+
+
+3.封装私有变量：立即执行函数的写法
+    使用“立即执行函数”（Immediately-Invoked Function Expression，IIFE），将相关的属性和方法封装在一个函数作用域里面，可以达到不暴露私有成员的目的。
+    var module1 = (function () {
+    　var _count = 0;
+    　var m1 = function () {
+    　  //...
+    　};
+    　var m2 = function () {
+    　　//...
+    　};
+    　return {
+    　　m1 : m1,
+    　　m2 : m2
+    　};
+    })();
+
+    上面的module1就是JavaScript模块的基本写法。下面，再对这种写法进行加工。
+
+    模块的放大模式
+
+    如果一个模块很大，必须分成几个部分，或者一个模块需要继承另一个模块，这时就有必要采用“放大模式”（augmentation）。
+
+    var module1 = (function (mod){
+    　mod.m3 = function () {
+    　　//...
+    　};
+    　return mod;
+    })(module1);
+
+    在浏览器环境中，模块的各个部分通常都是从网上获取的，有时无法知道哪个部分会先加载。如果采用上面的写法，第一个执行的部分有可能加载一个不存在空对象，这时就要采用”宽放大模式”（Loose augmentation）。
+
+    var module1 = ( function (mod){
+    　//...
+    　return mod;
+    })(window.module1 || {});
+
+    输入全局变量
+
+    独立性是模块的重要特点，模块内部最好不与程序的其他部分直接交互。
+
+    为了在模块内部调用全局变量，必须显式地将其他变量输入模块。
+
+    var module1 = (function ($, YAHOO) {
+    　//...
+    })(jQuery, YAHOO);
+
+    上面的module1模块需要使用jQuery库和YUI库，就把这两个库（其实是两个模块）当作参数输入module1。这样做除了保证模块的独立性，还使得模块之间的依赖关系变得明显。
+
+    立即执行函数还可以起到命名空间的作用。
+
+    (function($, window, document) {
+
+      function go(num) {
+      }
+
+      function handleEvents() {
+      }
+
+      function initialize() {
+      }
+
+      function dieCarouselDie() {
+      }
+
+      //attach to the global scope
+      window.finalCarousel = {
+        init : initialize,
+        destroy : dieCouraselDie
+      }
+
+    })( jQuery, window, document );
+
+    上面代码中，finalCarousel对象输出到全局，对外暴露init和destroy接口，内部方法go、handleEvents、initialize、dieCarouselDie都是外部无法调用的。
