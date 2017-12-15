@@ -19,17 +19,19 @@ var complex = (function () {
         getNum : getNum
     }
 
-})();
+}());
 
 ;(function (complex) {
 
-    complex.multi = function (complex) {
-        
+    complex.multi = function () {
+        return this.getNum()*5 ;
     }
 
     complex.divid = function () {
-        
+        return this.getNum()/5 ;
+
     }
+
 
 })(window.complex || {});
 
@@ -38,3 +40,4 @@ console.log(complex.add()) ;
 console.log(complex.add()) ;
 console.log(complex.del()) ;
 console.log(complex.getNum()) ;
+console.log(complex.multi());
