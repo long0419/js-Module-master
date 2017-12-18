@@ -1,0 +1,37 @@
+Window对象及其在客户端js中所扮演的核心角色：他是客户端js程序的全局对象。
+1.计时器：
+    setTimeOut：用来实现一个函数在指定的毫秒数之后运行。
+        返回一个值，这个值可以传递给clearTimeout（）用于取消这个函数的执行。
+    setInterval:指定毫秒数的间隔里重复调用。
+        返回一个值，这个值可以传递给clearInterval（）用于取消这个函数的执行。
+
+2.window对象的location属性引用的是Location对象。它表示该窗口中当前显示的文档的URL，并定义了方法来使窗口载入新的文档。
+    Document对象也有一个URL属性，是文档首次载入后保存该文档URL的静态字符串。如果定位到文档中的片段标识符，Location对象会做出相应的更新，而document.URL属性却不会改变。
+        Location表示该窗口中当前显示的文档的URL。Location对象的toString()方法返回href属性的值，因此在会隐式调用toString（）的情况下，可以使用location代替location.href。
+        Location对象的hash和search属性比较有趣。hash属性返回url中的片段标识符部分。search返回问号之后的URL，这部分通常是某种类型的查询字符串。
+        location="#top" //如果文档中没有元素ID 是top ，它会让浏览器跳到文档开始出。
+        location对象的url分解属性是可写的，对他们重新赋值会改变URL的位置，并且导致浏览器载入一个新的文档（如果改变的是hash属性，则在文档中进行跳转）
+
+    History对象的back（）和forward()方法和浏览器的后退和前进按钮一样。也可以使用go（）方法来向前（正参数）或向后（负参数）跳过任意多个页。
+
+    Navigator 属性引用的是包含浏览器厂商和版本信息的Navigator对象。
+        appName：web浏览器的全称。
+        appVersion：浏览器版本
+        userAgent:
+        platform
+
+     Window对象的screen属性引用的是Screen对象。它提供有关窗口显示的代销和可用的颜色数量的信息。属性width和height指定的是以像素为单位的窗口大小。
+
+     alert:用户显示一条消息并等待用户关闭对话框。
+     confirm：也显示一条消息，要求用户单击确定或取消按钮。
+     prompt：等待用户输入字符串，并返回那个字符串。
+
+
+3.多窗口和窗体：
+    一个web浏览器可能在桌面上包含多个标签页。每个标签页都是独立的“浏览上下文”。每个上下文都是独立的window对象，相互不干扰。
+
+4.交互窗口中的js
+    假设一个web页面里面有两个<iframe>元素，分别叫A 和 B ，并假设这些窗体所包含的文档来自相同一个服务器，并且包含交互脚本。
+        在窗体A 中定义了一个变量i ： var i =  3 ； 也可以显式调用这个引用变量：window.i
+        由于窗体B 中脚本可以引用窗体A中的window对象，因此它也可以引用那个window对象的属性：
+            parent.A.i = 4 ; //改变窗体A 中的变量i的值    P358

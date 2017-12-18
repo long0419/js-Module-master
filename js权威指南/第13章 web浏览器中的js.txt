@@ -1,0 +1,15 @@
+1.客户端JS
+    window对象是所有客户端js特性和API主要接入点。它表示web浏览器的一个窗口或窗体。并且可以用标识符window来引用它。
+        window对象定义了一些属性：
+            location对象的location属性，location对象指定当前窗口中的URL
+            alert对象弹出一个对话框用来显示一些信息。
+            setTimeOut可以注册一个函数，在给定一个时间之后出发一个回调 。setTimeOut 没有显式的使用window属性。在客户端js中，window对象也是全局对象。这意味着window对象处于作用域链的顶部，它的属性和方法实际上是
+         全局变量和全局函数。window对象右一个引用自身的属性，叫做window 。
+            document属性：它引用Document对象，后者表示显式窗口中的文档。Documnet对象右一些重要方法，比如getElementById（）等。
+            除了上面三种对象之外，另外一个重要的属性集合是时间处理程序相关的属性。
+
+
+2.URL中的Javascript
+    在URL后面跟着一个JS:协议限定符，是另一种嵌入JS代码到客户端的方法。
+
+
